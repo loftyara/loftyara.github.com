@@ -24,8 +24,8 @@ text-align: justify;
 Experiments on a controlled corpus of Python documentation show that the key idea—dividing the training material into stages of increasing complexity—is not supported: this approach is inferior to training on the full dataset at all stages. However, the strategy of gradually growing the model on a single dataset proves effective. It allows for a reduction in overall training time by 5–25% without loss of quality, and sometimes even improves model accuracy.
 The mechanisms for controlling learning during expansion are also explored: warming up new weights demonstrates a moderate improvement in stability, while partially freezing old parameters yields no positive effect. The results indicate that the advantage of the stepwise approach is not due to the "pedagogical" structure of the data, but to the computational efficiency of training small models in the early stages. The findings suggest directions for future research, including the use of datasets with repetitive information and optimizing the number of growth stages.</p>
 
-<p>This repository contains the implementation and experimental results of **LLMagogyV2**, a research project exploring **progressive model growth** as an alternative to traditional end-to-end pre-training of language models.
-This is a continuation of the first version of the <a href="https://github.com/loftyara/LLMagogy"><LLMagogy/a></p>
+<p>This repository contains the implementation and experimental results of LLMagogyV2, a research project exploring progressive model growth as an alternative to traditional end-to-end pre-training of language models.
+This is a continuation of the first version of the <a href="https://github.com/loftyara/LLMagogy">LLMagogy</a></p>
 
 <p>Unlike standard approaches that train a fixed-size model on massive chaotic corpora, LLMagogy trains a **small model first** and **gradually expands it** (depth and width) while training on a **structured, cumulative dataset**—inspired by human pedagogy.</p>
 
