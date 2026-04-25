@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Encode the thought  - neural network training for understanding semantic instead of predicting tokens. Version 2.</title>
+<style>
+body {
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+font-size: 18px;
+line-height: 1.5;
+}
+p {
+text-align: justify;
+}
+</style>
+</head>
+<body>
+<h1>Encode the thought  - neural network training for understanding semantic instead of predicting tokens. Version 2.</h1>
+<p><i>“Thoughts die the moment they are embodied by words.” A. Schopenhauer</i></p>
+<p>This is a continuation of the first version of the <a href="https://github.com/loftyara/encode_thought">Encode the thought</a></p>
+<p>A neural architecture for extracting the invariant semantic core of text into a compact, order-invariant matrix of learnable slots. Instead of predicting the next token autoregressively, Encode_thoughtV2 compresses sequences of base encoder embeddings into a fixed semantic representation and reconstructs them via a parallel transformer decoder. The pipeline is model-agnostic and operates on top of frozen base encoders.</p>
+
+<h2>KEY HIGHLIGHTS</h2>
+<ul>
+<li>Model-Agnostic Pipeline: Compatible with any transformer encoder. Currently optimized and validated with prajjwal1/bert-mini (256d).</li>
+<li>Ultra-Minimal Configuration: 1 slot, internal dimension 64, 1 encoder/decoder layer, 4 induced points. Total trainable parameters: approximately 0.8 to 0.9 million (less than 2 percent of the base LLM).</li>
+<li>Hybrid Loss and Regularization: CrossEntropy (alpha=0.2) plus CosineLoss (beta=1.0) with label smoothing (0.1) and Context Dropout (p=0.15) for stable parallel training.</li>
+<li>Phase 1 Complete: Achieves 80 to 90 percent lexical reconstruction and greater than 0.95 cosine similarity in Teacher Forcing (Corrected) mode.</li>
+<li>Transparent Limitations: Autoregressive generation (AR and Raw AR) currently collapses into repetition loops due to Exposure Bias. Stabilizing closed-loop generation is the sole focus of next phase.</li>
+</ul>
+
+<h2>CURRENT EXPERIMENTAL RESULTS</h2>
+<table>
+<tr>
+<th>Mode</th><th>Context Source</th><th>Lexical Accuracy</th><th>Status</th>
+</tr>
+<tr>
+<td>Corrected (Teacher Forcing)</td><td>Ground Truth</td><td>80 to 90 %</td><td>Preserves plot, entities, and semantics. Minor subtoken artifacts and local repetitions at sentence boundaries</td>
+</tr>
+<tr>
+<td>AR (Quantized Context)</td><td>Own Predictions</td><td>Approximately 0%</td><td>Collapses into high-frequency token loops after 5 to 10 steps</td>
+</tr>
+<tr>
+<td>Raw AR</td><td>Raw Embeddings</td><td>Approximately 0%</td><td>Similar collapse with semantic drift</td>
+</tr>
+</table>
+
+Diagnosis: The architecture successfully compresses and reconstructs semantics when provided with a valid context window. AR failure is strictly due to Exposure Bias (distribution shift between training and inference), not capacity limits or architectural flaws. Scaling parameters does not resolve this; it requires a shift to sequence-level training paradigms.
+
+<p>All code, datasets, and results are provided for full reproducibility.</p>
+<a href="https://github.com/loftyara/Encode_thoughtV2">continue on github</a>
+</body>
+</html>
