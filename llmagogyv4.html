@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LLMagogy or fast multi-stage pre-training of Large Language Models with pre-selected limited datasets. Version 4.</title>
+<style>
+body {
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+font-size: 18px;
+line-height: 1.5;
+}
+p {
+text-align: justify;
+}
+</style>
+</head>
+<body>
+<h1>LLMagogy or fast multi-stage pre-training of Large Language Models with pre-selected limited datasets. Version 4.</h1>
+<p><i>“knowing a few principles frees you from knowing many facts” R. Descartes<br>
+“the knowledge of certain principles easily compensates the lack of knowledge of certain facts” C. Helvétius</i></p>
+<p>Experimental research on methods of influencing LLM pre-training to achieve lower validation loss. This is the fourth iteration of the LLMagogy project series.</p>
+<p>LLMagogy explores whether it is possible to influence the pre-training process of a language model through various interventions — staged training, regularization techniques, data ordering, and hyperparameter evolution — to achieve better generalization than standard training.
+Previous versions:
+<ul>
+<li>LLMagogy V1 — theoretical concept of multi-stage pre-training inspired by human learning https://github.com/loftyara/LLMagogy</li>
+<li>LLMagogy V2 — experimental validation on a Python documentation dataset (model growth showed 5-25% time savings) https://github.com/loftyara/LLMagogyV2</li>
+<li>LLMagogy V3 — failed attempt on TinyStories (results not published)</li>
+</ul>
+</p>
+<p>Methods that did work: global warmup, Stochastic Depth, Gradient Noise, LR reduction.  
+Methods that did NOT work: precision evolution, model size growth, hyperparameter evolution (except LR), loss function modification, curriculum learning, warmup during model expansion.
+</p>
+
+<p>All code, datasets, and results are provided for full reproducibility.</p>
+
+<a href="https://github.com/loftyara/LLMagogyV4">continue on github</a>
+</body>
+</html>
